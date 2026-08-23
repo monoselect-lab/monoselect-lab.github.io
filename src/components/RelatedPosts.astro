@@ -1,0 +1,114 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+	/** id of the post currently being rendered, so it never links to itself */
+	currentId: string;
+	/** hand-picked slugs from frontmatter, in the order they should appear */
+	slugs?: string[];
+}
+
+const { currentId, slugs = [] } = Astro.props;
+
+const all = (await getCollection('blog')).filter((p) => p.id !== currentId);
+const byId = new Map(all.map((p) => [p.id, p]));
+
+// Hand-picked links win. If an article hasn't been curated yet we still want it
+// linked into the site, so fall back to same category, then to whatever is newest.
+const picked = slugs.map((s) => byId.get(s)).filter((p) => p !== undefined);
+
+if (picked.length < 2) {
+	const current = (await getCollection('blog')).find((p) => p.id === currentId);
+	const rest = all
+		.filter((p) => !picked.includes(p))
+		.sort((a, b) => {
+			const sameCat = (p: typeof a) => (p.data.category === current?.data.category ? 0 : 1);
+			return sameCat(a) - sameCat(b) || b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+		});
+	picked.push(...rest.slice(0, 3 - picked.length));
+}
+
+const related = picked.slice(0, 3);
+---
+
+{
+	related.length > 0 && (
+		<aside class="related">
+			<h2>関連記事</h2>
+			<ul>
+				{related.map((post) => (
+					<li>
+						<a href={`/blog/${post.id}/`}>
+							<span class="emoji" aria-hidden="true">
+								{post.data.heroEmoji ?? '📄'}
+							</span>
+							<span class="text">
+								<span class="rel-title">{post.data.title}</span>
+								{post.data.category && <span class="rel-cat">{post.data.category}</span>}
+							</span>
+						</a>
+					</li>
+				))}
+			</ul>
+		</aside>
+	)
+}
+
+<style>
+	.related {
+		margin: 3em 0 1em;
+		padding-top: 1.5em;
+		border-top: 1px solid rgb(var(--gray-light));
+	}
+	.related h2 {
+		font-size: 1.25em;
+		margin: 0 0 0.8em;
+	}
+	.related ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.6em;
+	}
+	.related li {
+		margin: 0;
+	}
+	.related a {
+		display: flex;
+		align-items: center;
+		gap: 0.8em;
+		padding: 0.8em 1em;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 10px;
+		text-decoration: none;
+		color: rgb(var(--gray-dark));
+		background: #fff;
+		transition: border-color 0.15s ease, box-shadow 0.15s ease;
+	}
+	.related a:hover {
+		border-color: var(--accent);
+		box-shadow: var(--box-shadow);
+	}
+	.related .emoji {
+		font-size: 1.5em;
+		line-height: 1;
+		flex-shrink: 0;
+	}
+	.related .text {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25em;
+		min-width: 0;
+	}
+	.related .rel-title {
+		font-family: var(--font-heading);
+		font-weight: 700;
+		font-size: 0.95em;
+		line-height: 1.4;
+	}
+	.related .rel-cat {
+		font-size: 0.78em;
+		color: rgb(var(--gray));
+	}
+</style>

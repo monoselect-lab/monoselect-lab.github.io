@@ -16,6 +16,8 @@ const blog = defineCollection({
 			heroImage: z.optional(image()),
 			heroEmoji: z.string().optional(),
 			category: z.string().optional(),
+			// slugs of hand-picked related articles, most relevant first
+			related: z.array(z.string()).optional(),
 		}),
 });
 
