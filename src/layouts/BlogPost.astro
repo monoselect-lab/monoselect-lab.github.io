@@ -11,10 +11,20 @@ import { SITE_TITLE } from '../consts';
 
 type Props = CollectionEntry<'blog'>['data'] & {
 	headings?: { depth: number; slug: string; text: string }[];
+	plain?: boolean;
 };
 
-const { title, description, pubDate, updatedDate, heroImage, heroEmoji, category, headings = [] } =
-	Astro.props;
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	heroImage,
+	heroEmoji,
+	category,
+	headings = [],
+	plain = false,
+} = Astro.props;
 
 const jsonLd = {
 	'@context': 'https://schema.org',
@@ -123,29 +133,37 @@ const jsonLd = {
 		<Header />
 		<main>
 			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt={title} />}
-					{!heroImage && <ArticleBanner title={title} emoji={heroEmoji} />}
-				</div>
+				{!plain && (
+					<div class="hero-image">
+						{heroImage && <Image width={1020} height={510} src={heroImage} alt={title} />}
+						{!heroImage && <ArticleBanner title={title} emoji={heroEmoji} />}
+					</div>
+				)}
 				<div class="prose">
 					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										最終更新日: <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
+						{!plain && (
+							<div class="date">
+								<FormattedDate date={pubDate} />
+								{
+									updatedDate && (
+										<div class="last-updated-on">
+											最終更新日: <FormattedDate date={updatedDate} />
+										</div>
+									)
+								}
+							</div>
+						)}
 						{category && <span class="category-pill">{category}</span>}
 						<h1>{title}</h1>
 						<hr />
 					</div>
-					<p class="ad-disclosure">
-						本ページはプロモーションが含まれています。当サイトはAmazonアソシエイト・プログラムの参加者です。
-					</p>
+					{
+						!plain && (
+							<p class="ad-disclosure">
+								本ページはプロモーションが含まれています。当サイトはAmazonアソシエイト・プログラムの参加者です。
+							</p>
+						)
+					}
 					<Toc headings={headings} />
 					<slot />
 				</div>
