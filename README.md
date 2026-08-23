@@ -1,63 +1,40 @@
-# Astro Starter Kit: Blog
+# モノセレクトラボ (monoselect-lab)
+
+**在宅ワーク × 賃貸・ワンルーム** の困りごとを起点にした、商品比較・選び方ガイドサイトです。
+
+🔗 **サイト本体: https://monoselect-lab.github.io/**
+
+「除湿機おすすめ10選」のような一般的なランキングではなく、
+「寝る場所と干す場所が同じ人向けの除湿機」のように、
+読者の住環境や状況で絞り込んだ比較記事を書いています。
+
+## 公開中の記事
+
+- [ワンルームの部屋干し除湿機比較｜寝る場所と干す場所が同じ人の選び方](https://monoselect-lab.github.io/blog/wanroom-heyaboshi-joshitsuki-hikaku/)
+- [賃貸の床を椅子のキャスターで傷つけない対策｜チェアマットとキャスター交換を比較](https://monoselect-lab.github.io/blog/chintai-yuka-kizu-chair-caster-taisaku/)
+- [在宅ワークの生活音・子どもの声対策｜Web会議で気まずくならないグッズ比較](https://monoselect-lab.github.io/blog/web-kaigi-seikatsuon-taisaku-hikaku/)
+- [分離型キーボードおすすめ比較｜手首・肩の痛み対策に選ぶなら](https://monoselect-lab.github.io/blog/split-ergonomic-keyboard-hikaku/)
+
+記事一覧: https://monoselect-lab.github.io/blog/
+
+## 編集方針
+
+- 記事は**メーカー公表スペック・価格情報・レビュー傾向などの公開情報にもとづく調査記事**です。
+  全商品を実際に使い込んだ体験レポートではないことを、各記事の冒頭で明示しています。
+- 星評価は**当サイト独自の編集部評価**であり、Amazon 上の評価そのものではありません。
+- 当サイトは Amazon.co.jp アソシエイト・プログラムの参加者です。
+- 価格・在庫は変動するため、購入前に必ず商品ページで最新情報を確認してください。
+
+## 技術構成
+
+[Astro](https://astro.build/) 製の静的サイトを GitHub Pages で配信しています。
+`main` への push で `.github/workflows/` のデプロイワークフローが走ります。
 
 ```sh
-npm create astro@latest -- --template blog
+npm install
+npm run dev     # ローカル開発サーバ
+npm run build   # dist/ に静的ビルド
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+記事は `src/content/blog/*.mdx`。フロントマターの `related` に slug を並べると、
+記事下部の「関連記事」がその指定順で出ます（未指定なら同カテゴリ→新着でフォールバック）。
