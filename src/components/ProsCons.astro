@@ -1,0 +1,22 @@
+---
+interface Props {
+	pros: string[];
+	cons: string[];
+}
+const { pros, cons } = Astro.props;
+---
+
+<div class="pros-cons">
+	<div class="box pros">
+		<span class="box-title">👍 良い点</span>
+		<ul>
+			{pros.map((p) => <li>{p}</li>)}
+		</ul>
+	</div>
+	<div class="box cons">
+		<span class="box-title">⚠️ 気になる点</span>
+		<ul>
+			{cons.map((c) => <li>{c}</li>)}
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,15 @@
+---
+interface Props {
+	score: number;
+	label?: string;
+}
+const { score, label = '編集部評価' } = Astro.props;
+const full = Math.round(score);
+const stars = '★★★★★☆☆☆☆☆'.slice(5 - full, 10 - full);
+---
+
+<span class="star-rating">
+	<span class="stars" aria-hidden="true">{stars}</span>
+	<span class="score-num">{score.toFixed(1)}</span>
+	<span class="score-label">/ 5（{label}）</span>
+</span>

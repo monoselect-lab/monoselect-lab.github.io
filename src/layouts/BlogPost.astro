@@ -6,11 +6,15 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import Toc from '../components/Toc.astro';
 import { SITE_TITLE } from '../consts';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & {
+	headings?: { depth: number; slug: string; text: string }[];
+};
 
-const { title, description, pubDate, updatedDate, heroImage, heroEmoji } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, heroEmoji, category, headings = [] } =
+	Astro.props;
 
 const jsonLd = {
 	'@context': 'https://schema.org',
@@ -101,6 +105,17 @@ const jsonLd = {
 					font-size: 1.75em;
 				}
 			}
+			.category-pill {
+				display: inline-block;
+				background: var(--accent);
+				color: #fff;
+				font-family: var(--font-heading);
+				font-weight: 700;
+				font-size: 0.8em;
+				padding: 0.3em 1em;
+				border-radius: 999px;
+				margin-bottom: 0.8em;
+			}
 		</style>
 	</head>
 
@@ -124,12 +139,14 @@ const jsonLd = {
 								)
 							}
 						</div>
+						{category && <span class="category-pill">{category}</span>}
 						<h1>{title}</h1>
 						<hr />
 					</div>
 					<p class="ad-disclosure">
 						本ページはプロモーションが含まれています。当サイトはAmazonアソシエイト・プログラムの参加者です。
 					</p>
+					<Toc headings={headings} />
 					<slot />
 				</div>
 			</article>

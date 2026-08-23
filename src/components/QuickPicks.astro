@@ -1,0 +1,26 @@
+---
+interface Item {
+	emoji: string;
+	name: string;
+	anchor: string;
+	score: number;
+}
+interface Props {
+	items: Item[];
+}
+const { items } = Astro.props;
+---
+
+<div class="hscroll" role="list">
+	{
+		items.map((item) => (
+			<a class="hscroll-item" href={item.anchor} role="listitem">
+				<span class="hs-emoji" aria-hidden="true">
+					{item.emoji}
+				</span>
+				<span class="hs-name">{item.name}</span>
+				<span class="hs-score">★{item.score.toFixed(1)}</span>
+			</a>
+		))
+	}
+</div>
