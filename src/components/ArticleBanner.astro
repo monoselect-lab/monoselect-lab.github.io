@@ -1,0 +1,39 @@
+---
+interface Props {
+	title: string;
+	emoji?: string;
+}
+
+const { title, emoji = '🛒' } = Astro.props;
+
+// Deterministic hue from the title so each article gets a consistent,
+// distinct color without needing a real photo asset.
+let hash = 0;
+for (let i = 0; i < title.length; i++) {
+	hash = (hash << 5) - hash + title.charCodeAt(i);
+	hash |= 0;
+}
+const hue = Math.abs(hash) % 360;
+const hueB = (hue + 40) % 360;
+const from = `hsl(${hue}, 60%, 45%)`;
+const to = `hsl(${hueB}, 70%, 32%)`;
+---
+
+<div class="banner" style={`background: linear-gradient(135deg, ${from}, ${to});`} role="img" aria-label={title}>
+	<span class="emoji">{emoji}</span>
+</div>
+<style>
+	.banner {
+		width: 100%;
+		aspect-ratio: 1200 / 630;
+		border-radius: 12px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: var(--box-shadow);
+	}
+	.emoji {
+		font-size: min(20vw, 7rem);
+		filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+	}
+</style>
