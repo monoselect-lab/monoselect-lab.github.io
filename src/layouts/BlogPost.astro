@@ -52,6 +52,12 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.last-updated-on {
 				font-style: italic;
 			}
+			.ad-disclosure {
+				font-size: 0.85em;
+				color: rgb(var(--gray));
+				text-align: center;
+				margin: -0.5em 0 1.5em;
+			}
 		</style>
 	</head>
 
@@ -77,6 +83,9 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 						<h1>{title}</h1>
 						<hr />
 					</div>
+					<p class="ad-disclosure">
+						本ページはプロモーションが含まれています。当サイトはAmazonアソシエイト・プログラムの参加者です。
+					</p>
 					<slot />
 				</div>
 			</article>
