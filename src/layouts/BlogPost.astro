@@ -79,8 +79,11 @@ const jsonLd = {
 			.prose :global(table) {
 				display: block;
 				overflow-x: auto;
+				white-space: nowrap;
 				-webkit-overflow-scrolling: touch;
 				border-collapse: collapse;
+				mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
+				-webkit-mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
 			}
 			.prose :global(th),
 			.prose :global(td) {
