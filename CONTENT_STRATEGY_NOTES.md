@@ -9,15 +9,24 @@
 一般的な「除湿機おすすめ10選」ではなく、「寝る場所と干す場所が同じ人向けの除湿機」のように
 **読者の住環境・状況で絞り込んだロングテール**を狙う。競合が薄く、購入意図が強い。
 
-## 公開済み記事（2026-08-24 時点：5本）
+## 公開済み記事（2026-08-25 時点：7本）
 
-| slug | タイトル要旨 | カテゴリ |
+このテーブルは health-check が毎回更新する。**新しい記事を書く前にここを見て、切り口の重複を避ける。**
+
+| slug | 切り口（何で絞ったか） | カテゴリ |
 | --- | --- | --- |
-| `split-ergonomic-keyboard-hikaku` | 分離型キーボード／手首・肩の痛み対策 | 商品比較 |
-| `web-kaigi-seikatsuon-taisaku-hikaku` | Web会議の生活音・子どもの声対策グッズ | テレワーク環境 |
-| `chintai-yuka-kizu-chair-caster-taisaku` | 賃貸の床のキャスター傷対策（マット/キャスター交換） | 賃貸・住まい |
-| `wanroom-heyaboshi-joshitsuki-hikaku` | ワンルームの部屋干し除湿機 | 生活家電 |
-| `chintai-desk-tenban-monitor-arm` | 安い机・中空天板にモニターアームは付くか | テレワーク環境 |
+| `split-ergonomic-keyboard-hikaku` | 手首・肩の痛み → 分離型キーボード | テレワーク環境 |
+| `web-kaigi-seikatsuon-taisaku-hikaku` | Web会議に生活音・子どもの声が乗る | テレワーク環境 |
+| `chintai-yuka-kizu-chair-caster-taisaku` | 賃貸の床にキャスター傷（原状回復） | 賃貸・住まい |
+| `wanroom-heyaboshi-joshitsuki-hikaku` | 寝る場所と干す場所が同じ → 除湿機 | 生活家電 |
+| `chintai-desk-tenban-monitor-arm` | 机の天板が薄い・中空 → モニターアーム | テレワーク環境 |
+| `chintai-shinya-dakenon-taisaku` | 壁が薄い＋深夜作業 → 打鍵音が隣室へ | テレワーク環境 |
+| `wanroom-shigoto-neru-basho-shikiri` | 寝る場所と働く場所が同じ → 間仕切り | 賃貸・住まい |
+
+**絞り込み軸の内訳**：音 2本（Web会議・打鍵音）／賃貸の物理制約 3本（床・天板・天井）／
+ワンルームの面積 2本（除湿機・間仕切り）／身体 1本（キーボード）。
+**「音」と「賃貸の制約」に寄っている**ので、次は身体（椅子・照明・目）か、
+季節性（結露・カビ）の軸を足すと重複が減る。
 
 ## 気づいたパターン
 
