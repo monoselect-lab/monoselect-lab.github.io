@@ -12,6 +12,7 @@
 
 <!-- ARTICLES:START -->
 - [ワンルームで「寝る場所」と「働く場所」を分ける方法は、実質4通りしかない](https://monoselect-lab.github.io/blog/wanroom-shigoto-neru-basho-shikiri/)
+- [部屋の電気は落としたい、でも手元は明るくしたい｜ワンルームの夜作業の照明](https://monoselect-lab.github.io/blog/wanroom-teoto-kurai-desk-light/)
 - [安い机にモニターアームは付けられる？賃貸ワンルームの薄い天板・中空天板で選ぶ現実解](https://monoselect-lab.github.io/blog/chintai-desk-tenban-monitor-arm/)
 - [壁の薄い賃貸、深夜の打鍵音対策｜静音キーボードだけでは半分しか解決しない](https://monoselect-lab.github.io/blog/chintai-shinya-dakenon-taisaku/)
 - [賃貸の床を椅子のキャスターで傷つけない対策｜チェアマットとキャスター交換を比較](https://monoselect-lab.github.io/blog/chintai-yuka-kizu-chair-caster-taisaku/)
