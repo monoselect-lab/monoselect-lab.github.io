@@ -120,6 +120,15 @@ const jsonLd = {
 				.title h1 {
 					font-size: 1.75em;
 				}
+				/* main already supplies the phone gutter; don't inset again. */
+				main {
+					width: 100%;
+				}
+				.prose {
+					max-width: 100%;
+					margin: 0;
+					padding: 0;
+				}
 			}
 			.category-pill {
 				display: inline-block;

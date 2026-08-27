@@ -345,6 +345,13 @@ hr {
 }
 
 @media (max-width: 480px) {
+	/* On phones the gutter was being charged twice (main's max-width inset plus
+	   main's padding) and then a third time by .prose, leaving 258px of content
+	   on a 390px screen. One 16px gutter is enough here. */
+	main {
+		max-width: 100%;
+		padding: 1em 16px;
+	}
 	.pros-cons {
 		grid-template-columns: 1fr;
 	}
