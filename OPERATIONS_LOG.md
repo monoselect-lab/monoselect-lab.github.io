@@ -196,3 +196,20 @@ health-check の実行記録。日付ごとに追記。数字は Search Console�
 確定できた日**。robots/noindex/canonical/XML すべて白なので、残る説明は
 **「被リンクゼロの新規ドメインにクロール予算が割かれていない」**の一点に絞られた。
 記事を12本目、13本目と積んでもこの状態は動かない。**08-30 の判断期限は前倒しで判断してよい**。
+
+## 2026-08-28（夜の執筆ジョブ） — 記事12本目は push 済み、**GitHub Pages のデプロイが失敗中**
+
+- 記事 `wanroom-wifi-web-kaigi-togireru` を main に push（コミット `264ba84`）。
+  **ローカルの `npm run build` と `npm run check:rendered` はどちらも緑**（15ページ）。
+  ASIN 5/5 実在確認済み、アフィリタグとrel属性も欠落なし。**記事側の問題ではない。**
+- **Actions の `build` ジョブは毎回成功、`deploy` ジョブ（actions/deploy-pages@v4）が3回連続でタイムアウト。**
+  1回目・2回目は `Current status: updating_pages` を10分間繰り返して `Timeout reached, aborting!`。
+  3回目は `Current status:` が**空文字**を返し続けて同じくタイムアウト。
+- 切り分けたこと:
+  - `gh api .../pages` は `status: built` / `error.message: null`。**Pages 側はエラーを報告していない。**
+  - `githubstatus.com` に Pages の障害掲載は**なし**（掲載されていたのは Billing のみ）。
+  - デプロイ記録は同一SHA `264ba84` で2件とも `waiting → queued → in_progress → failure`。
+  - トップページは引き続き 200（**旧コンテンツのまま配信されている**）。新記事URLは 404。
+- **次回の実行者へ**: まず `gh run list` を見て、この run（33097733185）の後続が成功しているか確認すること。
+  失敗のままなら `gh run rerun <id> --failed`、それでも駄目なら空コミットで push し直す。
+  リポジトリ側で直せる要素は現時点で見当たらないので、**記事を書き直す・設定を変えるのは筋が悪い**。
