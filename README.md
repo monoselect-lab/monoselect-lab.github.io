@@ -11,6 +11,8 @@
 ## 公開中の記事
 
 <!-- ARTICLES:START -->
+- [「コンセントが足りない」は3つの別問題｜ワンルーム在宅デスクの電源を整理する](https://monoselect-lab.github.io/blog/wanroom-consent-tarinai-dengen-tap/)
+- [Web会議で顔が暗い問題は、照明かカメラかを切り分けてから買う｜ワンルームの在宅ワーク](https://monoselect-lab.github.io/blog/web-kaigi-kao-ga-kurai-light-camera/)
 - [Web会議のたびに扇風機を止めるのは、もうやめる｜ワンルームの在宅ワーク暑さ対策](https://monoselect-lab.github.io/blog/web-kaigi-senpuki-oto-atsusa-taisaku/)
 - [ワンルームで「寝る場所」と「働く場所」を分ける方法は、実質4通りしかない](https://monoselect-lab.github.io/blog/wanroom-shigoto-neru-basho-shikiri/)
 - [部屋の電気は落としたい、でも手元は明るくしたい｜ワンルームの夜作業の照明](https://monoselect-lab.github.io/blog/wanroom-teoto-kurai-desk-light/)
