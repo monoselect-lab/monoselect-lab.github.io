@@ -94,6 +94,22 @@ const jsonLd = {
 				padding: 0.5em 0.8em;
 				border: 1px solid rgb(var(--gray-light));
 			}
+			/* Product-name columns are the longest cells in every comparison
+			   table, and nowrap let them eat 295px of a 358px phone screen --
+			   pushing the price column right off the initial view. Let just
+			   that column wrap; the rest stay nowrap so the table keeps its
+			   readable horizontal-scroll shape instead of collapsing. */
+			.prose :global(th:first-child),
+			.prose :global(td:first-child) {
+				white-space: normal;
+				/* Without this, Japanese breaks between any two characters, so
+				   the column collapses to near min-content and product names
+				   stack one or two glyphs per line. keep-all breaks only at
+				   natural boundaries, which sizes short columns (身長) and long
+				   ones (製品名) correctly without a hardcoded floor. */
+				word-break: keep-all;
+				max-width: 12em;
+			}
 			.title {
 				margin-bottom: 1em;
 				padding: 1em 0;
