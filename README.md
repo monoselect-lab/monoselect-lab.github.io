@@ -11,6 +11,8 @@
 ## 公開中の記事
 
 <!-- ARTICLES:START -->
+- [ダイニングテーブルで在宅ワーク、肩がこるのは姿勢のせいではない｜70cmという高さの話](https://monoselect-lab.github.io/blog/dining-table-zaitaku-tsukue-takasugiru/)
+- [速度テストは速いのに、Web会議だけ固まる｜賃貸ワンルームのWi-Fiで先に疑う場所](https://monoselect-lab.github.io/blog/wanroom-wifi-web-kaigi-togireru/)
 - [「コンセントが足りない」は3つの別問題｜ワンルーム在宅デスクの電源を整理する](https://monoselect-lab.github.io/blog/wanroom-consent-tarinai-dengen-tap/)
 - [Web会議で顔が暗い問題は、照明かカメラかを切り分けてから買う｜ワンルームの在宅ワーク](https://monoselect-lab.github.io/blog/web-kaigi-kao-ga-kurai-light-camera/)
 - [Web会議のたびに扇風機を止めるのは、もうやめる｜ワンルームの在宅ワーク暑さ対策](https://monoselect-lab.github.io/blog/web-kaigi-senpuki-oto-atsusa-taisaku/)
