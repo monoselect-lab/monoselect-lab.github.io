@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check:rendered": "node scripts/check-rendered-markdown.mjs"
+    "check:rendered": "node scripts/check-rendered-markdown.mjs",
+    "check:links": "node scripts/check-internal-links.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.7",
