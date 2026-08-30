@@ -11,6 +11,7 @@
 ## 公開中の記事
 
 <!-- ARTICLES:START -->
+- [窓が苦手な音を、ノイズキャンセリングは得意にしています｜幹線道路沿いの賃貸ワンルームで働く人の騒音対策](https://monoselect-lab.github.io/blog/chintai-dorozoi-mado-souon-taisaku/)
 - [スタンドの下にキーボードが入るか入らないかで、必要な机の奥行きが14cm変わります｜ワンルームのノートPC首こり対策](https://monoselect-lab.github.io/blog/wanroom-notepc-stand-tsukue-okuyuki/)
 - [干す場所がないなら、除湿シートだけ買うのはやめてください｜ワンルームの布団直敷きカビ対策](https://monoselect-lab.github.io/blog/wanroom-futon-jikashiki-kabi-taisaku/)
 - [机60＋椅子100＋ベッド97＝257cm。6畳の短辺は約260cmしかありません｜ワンルームのワークチェア選び](https://monoselect-lab.github.io/blog/wanroom-work-chair-oku-basho/)
