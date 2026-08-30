@@ -89,26 +89,50 @@ const jsonLd = {
 				mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
 				-webkit-mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
 			}
+			/* Comparison tables run 4-5 columns; at body size they need ~700px
+			   of scroll on a 358px phone, which leaves the price column off
+			   the first view. Dropping to 14px is still comfortably readable
+			   and buys back enough width to reach it in one short swipe. */
+			@media (max-width: 480px) {
+				.prose :global(table) {
+					font-size: 0.85em;
+				}
+			}
 			.prose :global(th),
 			.prose :global(td) {
-				padding: 0.5em 0.8em;
+				padding: 0.5em 0.6em;
 				border: 1px solid rgb(var(--gray-light));
+				/* nowrap on every cell is what pushed the price column ~480px
+				   off a 390px screen: a single prose cell ("奥行45cm以下の机／
+				   立ち作業も") claimed 350px on its own. keep-all gives the same
+				   protection nowrap was there for -- Japanese never breaks
+				   mid-word -- while still wrapping at spaces, ／ and brackets. */
+				white-space: normal;
+				word-break: keep-all;
+				max-width: 11em;
 			}
 			/* Product-name columns are the longest cells in every comparison
 			   table, and nowrap let them eat 295px of a 358px phone screen --
 			   pushing the price column right off the initial view. Let just
 			   that column wrap; the rest stay nowrap so the table keeps its
 			   readable horizontal-scroll shape instead of collapsing. */
+			/* The first column identifies the row, so it stays pinned while
+			   the rest scrolls -- otherwise scrolling to the price column
+			   leaves you looking at numbers with no idea which product they
+			   belong to. */
 			.prose :global(th:first-child),
 			.prose :global(td:first-child) {
-				white-space: normal;
-				/* Without this, Japanese breaks between any two characters, so
-				   the column collapses to near min-content and product names
-				   stack one or two glyphs per line. keep-all breaks only at
-				   natural boundaries, which sizes short columns (身長) and long
-				   ones (製品名) correctly without a hardcoded floor. */
-				word-break: keep-all;
-				max-width: 12em;
+				position: sticky;
+				left: 0;
+				z-index: 1;
+				max-width: 9em;
+				background: #fff;
+			}
+			.prose :global(thead th:first-child) {
+				background: var(--accent);
+			}
+			.prose :global(tbody tr:nth-child(even) td:first-child) {
+				background: #f3f4f8;
 			}
 			.title {
 				margin-bottom: 1em;
