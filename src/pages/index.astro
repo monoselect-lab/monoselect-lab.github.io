@@ -10,12 +10,38 @@ import FormattedDate from '../components/FormattedDate.astro';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+// The brand name returns nothing on any engine yet, so state the site as an
+// entity explicitly rather than hoping Google infers it from the <h1>.
+const site = Astro.site!.href;
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'WebSite',
+			'@id': `${site}#website`,
+			url: site,
+			name: SITE_TITLE,
+			description: SITE_DESCRIPTION,
+			inLanguage: 'ja',
+			publisher: { '@id': `${site}#organization` },
+		},
+		{
+			'@type': 'Organization',
+			'@id': `${site}#organization`,
+			name: SITE_TITLE,
+			url: site,
+			description: SITE_DESCRIPTION,
+		},
+	],
+};
 ---
 
 <!doctype html>
 <html lang="ja">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 	</head>
 	<body>
 		<Header />
