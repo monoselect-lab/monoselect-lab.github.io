@@ -11,6 +11,9 @@
 ## 公開中の記事
 
 <!-- ARTICLES:START -->
+- [キーボードの右に13cmしか残らない机の話｜ワンルームでマウスが窮屈なときの引き算](https://monoselect-lab.github.io/blog/wanroom-desk-haba-mouse-trackball/)
+- [賃貸の玄関前に、宅配ボックスは置きっぱなしにしていいのか｜Web会議がインターホンで止まる人の受け取り設計](https://monoselect-lab.github.io/blog/chintai-genkan-takuhai-box-okihai/)
+- [3千円のヘッドセットが1万円のマイクに勝つ距離があります｜ワンルームのWeb会議で「声がこもる」と言われたときの直し方](https://monoselect-lab.github.io/blog/wanroom-web-kaigi-koe-komoru-mic-kyori/)
 - [窓が苦手な音を、ノイズキャンセリングは得意にしています｜幹線道路沿いの賃貸ワンルームで働く人の騒音対策](https://monoselect-lab.github.io/blog/chintai-dorozoi-mado-souon-taisaku/)
 - [スタンドの下にキーボードが入るか入らないかで、必要な机の奥行きが14cm変わります｜ワンルームのノートPC首こり対策](https://monoselect-lab.github.io/blog/wanroom-notepc-stand-tsukue-okuyuki/)
 - [干す場所がないなら、除湿シートだけ買うのはやめてください｜ワンルームの布団直敷きカビ対策](https://monoselect-lab.github.io/blog/wanroom-futon-jikashiki-kabi-taisaku/)
