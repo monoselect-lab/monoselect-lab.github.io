@@ -303,6 +303,10 @@ hr {
 	text-decoration: none !important;
 	margin: 1em 0 1.6em;
 	box-shadow: 0 4px 10px rgba(255, 122, 0, 0.35);
+	/* Long Japanese product names wrapped to leave a single orphan character
+	   on the second line of the buy button. Balance the lines instead. */
+	text-wrap: balance;
+	line-height: 1.5;
 }
 .btn-cta:hover {
 	background: var(--cta-dark);
