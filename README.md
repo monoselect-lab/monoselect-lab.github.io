@@ -12,6 +12,7 @@
 
 <!-- ARTICLES:START -->
 - [突っ張り棒は1本では効きません（賃貸ワンルームで、机のまわり1畳だけ先に固定する）](https://monoselect-lab.github.io/blog/chintai-wanroom-kagu-tento-tsuppari-stopper/)
+- [ダニは60℃で死にます。問題は、死んだあとに残るほうです｜干せないワンルームの布団と9月の鼻づまり](https://monoselect-lab.github.io/blog/wanroom-dani-shigai-hosenai-futon/)
 - [ブレーカーを落とすのは電子レンジ、止まるのはWeb会議（ワンルームの在宅ワークを守る順番）](https://monoselect-lab.github.io/blog/wanroom-breaker-ochiru-web-kaigi-ups/)
 - [「生ゴミは冷凍庫へ」が効かない部屋の話｜ワンルームで収集日まで4日をしのぐ順番](https://monoselect-lab.github.io/blog/wanroom-namagomi-shushubi-made-nioi/)
 - [昨日の唐揚げの匂いが、今日のシャツから出てきます｜ワンルームの調理臭を空気清浄機の前に止める](https://monoselect-lab.github.io/blog/wanroom-choriishu-fuku-futon-nioi/)
