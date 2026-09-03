@@ -582,3 +582,74 @@ HTTP 200・`application/xml`、canonical 正常、`noindex` 0件、トップか�
 **判断**：ここから先は運用者本人の判断が要る（実在の被リンクを1〜2本作る／独自ドメインを取る）。
 リンクスパムはやらない。それまでは記事を積む——クロールが来た日に23本より40本のほうが強い。
 
+
+## 2026-09-03（定例ヘルスチェック）
+
+**Search Console（08-03〜08-31）**：クリック 0／表示 0／クエリなし。**12日連続で全ゼロ。**
+
+**インデックス（`check_indexing.mjs`）**：**1/28 URL**（前日 1/26）。
+分母だけが記事2本ぶん増え、**分子は11日間 1 のまま**。
+
+**sitemap（`hc_sitemap.mjs`）**：`lastDownloaded` は **NEVER のまま12日目**。`isPending: true`。
+再送信はスキップ。
+
+**IndexNow**：28 URL を送信、**200 受理**。
+**Bing ブランド完全一致（"モノセレクトラボ"）**：本日もヒット0（monotaro / トンボ鉛筆 /
+Wikipedia 等の一般語マッチのみ）。**11日連続で0。**
+
+### 本日の新事実：技術的原因は全部つぶれた
+
+`hc_inspect_deep.mjs` を新規作成し、URL Inspection API の**全フィールド**を取った
+（従来の `check_indexing.mjs` は verdict / coverage / lastCrawlTime しか出しておらず、
+「なぜ来ないのか」に答えられていなかった）。
+
+トップページ:
+
+```
+verdict          PASS
+coverageState    Submitted and indexed
+robotsTxtState   ALLOWED
+indexingState    INDEXING_ALLOWED
+pageFetchState   SUCCESSFUL
+googleCanonical  https://monoselect-lab.github.io/   (userCanonical と一致)
+crawledAs        MOBILE
+lastCrawlTime    2026-08-23T08:59:23Z
+```
+
+記事側は `robotsTxtState` / `indexingState` / `pageFetchState` がすべて `_UNSPECIFIED`＝
+**Googleがそもそも一度も見に来ていない**（ブロックではなく不在）。
+プロパティ一覧も確認：`https://monoselect-lab.github.io/` の1件のみ、`siteFullUser`。
+プロパティ形式の取り違え（http/https、ドメイン vs URLプレフィックス）も無し。
+
+**つまり `2026-08-23 08:59` の1回＝GSC所有権確認の日にトップを1回取得してインデックスし、
+以後11日間 一度も戻ってきていない。** robots でもcanonicalでも取得失敗でもない。
+**サイト側に残っている技術的な原因は、これで全部つぶれた。**
+
+### 判断：本日から報告レベルを上げる
+
+これまで4日連続で「サイト側は全部緑／詰まりはGoogleが来ないこと／運用者判断が要る」と
+**本文に書いて件名は通常の日次レポートのまま**送っていた。運用者は件名しか見ない日もある、
+という前提を自分で書いておきながら、12日ゼロを通常件名で流し続けたのは報告として弱い。
+**本日は件名を「要対応」にした。**（過去に要対応を出したのは 08-27 の1回のみ。）
+
+残る変数は1つ、**被リンク0本の新規 `github.io` サブドメイン**。ここは運用者本人の判断が要る：
+(a) 実在の被リンクを1〜2本作る、(b) 独自ドメインを取る。リンクスパムはやらない。
+
+**検討して却下した手**：Google Indexing API（`urlNotifications:publish`）は
+JobPosting / BroadcastEvent 専用と明記されており、一般ページへの使用は用途外。
+クロールを誘発する報告はあるが、**GSCプロパティを危険に晒す可能性があるので使わない**。
+（却下した手も記録しておく＝次のヘルスチェックが同じことを再検討しなくて済む）
+
+### サイト側の検査（すべて緑）
+
+`npm run build` 28ページ／`check:rendered` 28ページ／`check:links` 25記事29ページ／
+`hc_tables` **32/32** テーブル到達可能／`hc_shot` トップ+新着2本すべて本文幅 357〜358px。
+
+**収益性**：Amazonリンクで `tag=monoselectlab-22` 欠落 **0件**、
+`rel="sponsored nofollow noopener"` と本数の不一致 **0記事**。
+`hc_asin` は**32 ASIN（変更5記事ぶん20 ＋ ローテーション15、重複除く）を 32/32 生存・商品名一致**。
+ローテーションオフセット 45 → 60（全112 ASIN）。`hc_price` は**38/38 が印字価格の±30%以内**、
+60 ASIN は価格キャッシュ未到達（ローテーション待ち）。
+
+**失敗ラン**：`FAILURES.log` なし。`hc_runs.mjs 3` は 8/9、唯一の赤は
+`NO ARTICLE publish 2026-08-31_214204.log` で**09-01 に報告済み**。新規の未報告失敗なし。
