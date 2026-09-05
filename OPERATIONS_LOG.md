@@ -726,3 +726,23 @@ monoselect-lab のURLは無し。つまり**Bingも未インデックス**とい
 「机が狭い人ほど一度立ち止まったほうがいい」等の明確な自己判断あり。編集不要と判断。
 
 **失敗ラン**：`FAILURES.log` なし。`hc_runs.mjs 3` は **9/9 完走**。新規の未報告失敗なし。
+
+---
+
+## 2026-09-05（朝の執筆ジョブ）— push が一度 403 で弾かれた
+
+29本目 `chintai-wanroom-shokusenki-koji-fuyou` の commit 後、`git push` が
+<strong>403 / Permission to monoselect-lab/monoselect-lab.github.io.git denied to sheetwidget</strong> で失敗した。
+
+原因：`gh auth status` を見ると github.com に2アカウント（`sheetwidget` と `monoselect-lab`）が
+ログインしており、<strong>アクティブが sheetwidget に切り替わっていた</strong>。
+git の credential helper が `gh auth git-credential` なので、アクティブ側のトークンが使われて弾かれる。
+このランの外で切り替わったもので、原因は特定できていない。
+
+対処：`gh auth switch --user monoselect-lab` でアクティブを戻してから push（成功）。
+アクティブは monoselect-lab のままにしてある（毎日のジョブが期待する状態のため）。
+
+→ **運用者へ**：他の作業で `gh auth switch` を使ったら、公開ジョブの前に
+`gh auth status` のアクティブが monoselect-lab に戻っているか確認してください。
+ヘルスチェック側に「アクティブアカウントが monoselect-lab か」の1行チェックを足す価値がありそうです
+（`gh auth status` は10日連続greenだったが、**見ていたのはログインの有無だけでアクティブ側は見ていなかった**）。
