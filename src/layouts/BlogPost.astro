@@ -134,6 +134,27 @@ const jsonLd = {
 			.prose :global(tbody tr:nth-child(even) td:first-child) {
 				background: #f3f4f8;
 			}
+			/* Everything above is for 4-5 column comparison tables that have to
+			   scroll. Applied to a 2-3 column table it did the opposite: the
+			   block box shrank to content, the 9em cap folded the label column
+			   ("外部モニターのH / DMI") and up to half the screen sat empty
+			   beside it -- 11 of 59 tables on 2026-09-11. Tables that small
+			   never need to scroll, so give them the full width back. */
+			.prose :global(table:not(:has(tr > :nth-child(4)))) {
+				display: table;
+				mask-image: none;
+				-webkit-mask-image: none;
+			}
+			/* No longer a scroll container, so a keep-all run that cannot wrap
+			   would widen the whole page (break-word: 6 pages overflowed).
+			   anywhere prevents that but lets auto layout starve a short value
+			   column down to "0〜 / 1"; min-width keeps those intact. */
+			.prose :global(table:not(:has(tr > :nth-child(4))) :is(th, td)) {
+				max-width: none;
+				min-width: 4em;
+				position: static;
+				overflow-wrap: anywhere;
+			}
 			.title {
 				margin-bottom: 1em;
 				padding: 1em 0;
