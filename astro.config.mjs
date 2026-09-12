@@ -7,6 +7,8 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 
+import { rehypeAffiliateRel } from './src/plugins/rehype-affiliate-rel.mjs';
+
 // Astro's sitemap integration emits bare <loc> entries. Google treats <lastmod>
 // as a crawl-scheduling hint, and this site's pages had no freshness signal at
 // all -- the homepage went 2+ days without a re-crawl while six article URLs sat
@@ -34,6 +36,9 @@ const newestPost = [...postDates.values()].sort().at(-1);
 
 export default defineConfig({
 	site: 'https://monoselect-lab.github.io',
+	markdown: {
+		rehypePlugins: [rehypeAffiliateRel],
+	},
 	integrations: [
 		mdx(),
 		sitemap({
