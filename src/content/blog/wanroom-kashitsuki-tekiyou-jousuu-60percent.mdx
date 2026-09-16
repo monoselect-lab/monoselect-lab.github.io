@@ -34,7 +34,7 @@ import QuickPicks from '../../components/QuickPicks.astro';
 	items={[
 		{ emoji: '🌬️', name: 'ダイニチ HD-RX325-W', anchor: '#ダイニチ-hd-rx325-w', score: 4.3 },
 		{ emoji: '♨️', name: '象印 EE-DF35-WA', anchor: '#象印-ee-df35-wa', score: 4.1 },
-		{ emoji: '📱', name: 'SwitchBot 温湿度計', anchor: '#switchbot-温湿度計', score: 4.2 },
+		{ emoji: '📱', name: 'SwitchBot 防水温湿度計', anchor: '#switchbot-防水温湿度計', score: 4.3 },
 		{ emoji: '🌡️', name: 'タニタ TT-559', anchor: '#タニタ-tt-559', score: 3.9 },
 	]}
 />
@@ -126,11 +126,11 @@ import QuickPicks from '../../components/QuickPicks.astro';
 | --- | --- | --- | --- | --- |
 | ダイニチ HD-RX325-W | ハイブリッド式 | 50/55/60/65/70%から選択 | 標準161W・eco11W | <span class="price-badge">¥21,156</span> |
 | 象印 EE-DF35-WA | スチーム式 | 3段階（%は非公表） | 湯沸かし985W・加湿305W | <span class="price-badge">¥20,944</span> |
-| SwitchBot 温湿度計 | 測定器 | ― | 電池式 | <span class="price-badge">¥1,980</span> |
+| SwitchBot 防水温湿度計 | 測定器 | ― | 電池式（約2年） | <span class="price-badge">¥1,980</span> |
 | タニタ TT-559 | 測定器 | ― | 電池式（約1年） | <span class="price-badge">¥2,199</span> |
 
 <p style="font-size:0.85em;color:rgb(var(--gray));">
-	※価格は2026年9月時点で編集部が確認した実売価格です。加湿器は季節で在庫も価格も大きく動くので、必ずAmazonの商品ページで最新の状態を確認してください。
+	※価格は2026年9月16日時点で編集部が確認した実売価格です。加湿器は季節で在庫も価格も大きく動くので、必ずAmazonの商品ページで最新の状態を確認してください。
 </p>
 
 ## ダイニチ HD-RX325-W
@@ -197,21 +197,23 @@ eco運転は<strong>消費電力11W・加湿量160mL/h・運転音13dB</strong>�
 
 <AmazonButton href="https://www.amazon.co.jp/dp/B0FH97RNLP?tag=monoselectlab-22" label="象印 EE-DF35-WAをAmazonで見る" />
 
-## SwitchBot 温湿度計
+## SwitchBot 防水温湿度計
 
-<StarRating score={4.2} />
+<StarRating score={4.3} />
 
-上で「1週間測ってください」と書いた、その1週間ぶんを勝手に記録してくれる側の道具です。スイス製センサーで4秒ごとに測り、本体に<strong>過去36日ぶん</strong>を保存。スマホをBluetooth圏内に持っていけばグラフで振り返れます。1,980円。
+上で「1週間測ってください」と書いた、その1週間ぶんを勝手に記録してくれる側の道具です。スイス製センサーで4秒ごとに測り、本体だけで<strong>68日ぶん</strong>を保存します。スマホをBluetooth圏内に持っていけばグラフで振り返れます。1,980円。
+
+名前に「防水」と付いていますが、この記事の用途では<strong>防水性能はおまけだと思ってください</strong>。IP65なので浴室にも屋外にも置けます、という製品で、たまたま同じ値段で中身が同じだから選んでいるだけです。脱衣所の湿度も測ってみたくなったときに買い足さずに済む、くらいの受け止め方でちょうどいいはずです。
 
 この記事の使い方なら<strong>ハブは要りません</strong>。外出先から見たい、設定値を超えたら通知がほしい、となるとハブミニ（別売）が必要になります。同じ部屋で働いている人がわざわざ外から見る必要はないので、まずは単体でいいと思います。
 
-注意点として、動作範囲が20〜85%RH。この記事で扱う40〜60%はど真ん中なので実用上は問題ありません。
+分解能は温度0.1℃・湿度1%刻みなので、この記事で扱う40〜60%の上げ下げを追うには十分です。加湿器を強にした翌朝に何%まで戻っているか、といった読み方ができます。
 
 <ProsCons
 	pros={[
 		'1,980円で、朝と昼と夜の湿度差がグラフとして残る',
-		'本体だけで36日ぶん保存。ハブなしでも「あとから見る」用途は成立する',
-		'レビュー15,488件と母数が大きく、当たり外れの情報が読みやすい',
+		'本体だけで68日ぶん保存。ハブなしでも「あとから見る」用途は成立する',
+		'電池2本付属で寿命は約2年。置いたらしばらく放っておける',
 	]}
 	cons={[
 		'通知や外出先からの確認にはハブミニが別途必要',
@@ -219,7 +221,7 @@ eco運転は<strong>消費電力11W・加湿量160mL/h・運転音13dB</strong>�
 	]}
 />
 
-<AmazonButton href="https://www.amazon.co.jp/dp/B07L4QNZVF?tag=monoselectlab-22" label="SwitchBot 温湿度計をAmazonで見る" />
+<AmazonButton href="https://www.amazon.co.jp/dp/B0BVLYPYT1?tag=monoselectlab-22" label="SwitchBot 防水温湿度計をAmazonで見る" />
 
 ## タニタ TT-559
 
@@ -262,7 +264,7 @@ eco運転は<strong>消費電力11W・加湿量160mL/h・運転音13dB</strong>�
 
 - <strong>寝る場所と机が同じ部屋で、電気代も抑えたい</strong> → ダイニチ HD-RX325-W
 - <strong>手入れに時間をかけたくない・水の衛生が気になる</strong> → 象印 EE-DF35-WA
-- <strong>まだ買うか決めていない／朝の窓が濡れている</strong> → SwitchBot 温湿度計で1週間測る
+- <strong>まだ買うか決めていない／朝の窓が濡れている</strong> → SwitchBot 防水温湿度計で1週間測る
 - <strong>スマホを開かずに数字を見ていたい</strong> → タニタ TT-559
 - <strong>朝も昼も湿度が40%台ある</strong> → 何も買わなくて大丈夫です
 

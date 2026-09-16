@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import ArticleBanner from '../components/ArticleBanner.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { CATEGORIES, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 
@@ -50,6 +50,16 @@ const jsonLd = {
 				<h1>{SITE_TITLE}</h1>
 				<p>{SITE_DESCRIPTION}</p>
 			</div>
+			<nav class="cat-nav" aria-label="カテゴリ">
+				{
+					CATEGORIES.map((c) => (
+						<a href={`/category/${c.slug}/`}>
+							{c.name}
+							<span>{posts.filter((p) => p.data.category === c.name).length}</span>
+						</a>
+					))
+				}
+			</nav>
 			<h2 class="section-title">新着比較記事</h2>
 			<ul class="post-grid">
 				{
@@ -91,6 +101,31 @@ const jsonLd = {
 	.hero p {
 		color: rgb(var(--gray));
 		font-size: 1.05em;
+	}
+	.cat-nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.7em;
+		justify-content: center;
+		margin: 0 0 2em;
+	}
+	.cat-nav a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5em;
+		text-decoration: none;
+		color: rgb(var(--ink));
+		font-weight: 700;
+		background: #fff;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 999px;
+		padding: 0.5em 1em;
+		box-shadow: var(--box-shadow);
+	}
+	.cat-nav a span {
+		color: rgb(var(--gray));
+		font-weight: 400;
+		font-size: 0.85em;
 	}
 	.section-title {
 		margin-top: 0.5em;

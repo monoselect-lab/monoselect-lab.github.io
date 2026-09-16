@@ -1,0 +1,143 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleBanner from '../../components/ArticleBanner.astro';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { CATEGORIES, SITE_TITLE } from '../../consts';
+
+export async function getStaticPaths() {
+	const { CATEGORIES } = await import('../../consts');
+	const posts = await getCollection('blog');
+	return CATEGORIES.map((category) => ({
+		params: { slug: category.slug },
+		props: {
+			category,
+			posts: posts
+				.filter((post) => post.data.category === category.name)
+				.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+		},
+	}));
+}
+
+const { category, posts } = Astro.props;
+const others = CATEGORIES.filter((c) => c.slug !== category.slug);
+---
+
+<!doctype html>
+<html lang="ja">
+	<head>
+		<BaseHead
+			title={`${category.name}の記事一覧 | ${SITE_TITLE}`}
+			description={category.description}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="cat-main">
+			<h1>{category.name}</h1>
+			<p class="cat-desc">{category.description}</p>
+			<p class="cat-count">{posts.length}本の記事があります。</p>
+			<ul class="post-grid">
+				{
+					posts.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>
+								{post.data.heroImage ? (
+									<img src={post.data.heroImage.src} alt="" />
+								) : (
+									<ArticleBanner title={post.data.title} emoji={post.data.heroEmoji} />
+								)}
+								<span class="post-title">{post.data.title}</span>
+								<span class="post-date">
+									<FormattedDate date={post.data.pubDate} />
+								</span>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+			<nav class="cat-other">
+				<span>ほかのカテゴリ</span>
+				{others.map((c) => <a href={`/category/${c.slug}/`}>{c.name}</a>)}
+			</nav>
+		</main>
+		<Footer />
+	</body>
+</html>
+<style>
+	.cat-main {
+		width: 100%;
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 2em 1em 3em;
+	}
+	.cat-desc {
+		color: rgb(var(--gray));
+		margin: 0.2em 0 0.4em;
+	}
+	.cat-count {
+		color: rgb(var(--gray));
+		font-size: 0.9em;
+		margin: 0 0 1.4em;
+	}
+	.post-grid {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+		gap: 1.4em;
+	}
+	.post-grid li a {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+		background: #fff;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 12px;
+		overflow: hidden;
+		box-shadow: var(--box-shadow);
+		transition: transform 0.15s ease;
+	}
+	.post-grid li a:hover {
+		transform: translateY(-3px);
+	}
+	.post-grid img {
+		width: 100%;
+		aspect-ratio: 1200 / 630;
+		object-fit: cover;
+		display: block;
+	}
+	.post-title {
+		display: block;
+		font-weight: 700;
+		padding: 0.8em 1em 0.2em;
+		color: rgb(var(--ink));
+	}
+	.post-date {
+		display: block;
+		padding: 0 1em 1em;
+		color: rgb(var(--gray));
+		font-size: 0.85em;
+	}
+	.cat-other {
+		margin-top: 2.4em;
+		padding-top: 1.2em;
+		border-top: 1px solid rgb(var(--gray-light));
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.9em;
+		align-items: center;
+	}
+	.cat-other span {
+		color: rgb(var(--gray));
+		font-size: 0.9em;
+	}
+	@media (max-width: 480px) {
+		.post-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
