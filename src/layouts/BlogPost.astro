@@ -80,21 +80,27 @@ const jsonLd = {
 				padding: 1em;
 				color: rgb(var(--gray-dark));
 			}
-			.prose :global(table) {
-				display: block;
+			/* The scroll container is the wrapper div (rehype-table-scroll.mjs),
+			   not the table. The table stays a real table at width 100%, so it
+			   fills the box when its content is narrow and overflows the
+			   wrapper when its content is wide. The browser measures the
+			   content; nothing here has to guess from column count, which is
+			   what the two previous versions of this block got wrong. */
+			.prose :global(.table-scroll) {
 				overflow-x: auto;
-				white-space: nowrap;
 				-webkit-overflow-scrolling: touch;
+				margin-bottom: 1.3em;
+			}
+			.prose :global(.table-scroll table) {
+				margin-bottom: 0;
 				border-collapse: collapse;
-				mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
-				-webkit-mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
 			}
 			/* Comparison tables run 4-5 columns; at body size they need ~700px
 			   of scroll on a 358px phone, which leaves the price column off
 			   the first view. Dropping to 14px is still comfortably readable
 			   and buys back enough width to reach it in one short swipe. */
 			@media (max-width: 480px) {
-				.prose :global(table) {
+				.prose :global(.table-scroll table) {
 					font-size: 0.85em;
 				}
 			}
@@ -111,11 +117,6 @@ const jsonLd = {
 				word-break: keep-all;
 				max-width: 11em;
 			}
-			/* Product-name columns are the longest cells in every comparison
-			   table, and nowrap let them eat 295px of a 358px phone screen --
-			   pushing the price column right off the initial view. Let just
-			   that column wrap; the rest stay nowrap so the table keeps its
-			   readable horizontal-scroll shape instead of collapsing. */
 			/* The first column identifies the row, so it stays pinned while
 			   the rest scrolls -- otherwise scrolling to the price column
 			   leaves you looking at numbers with no idea which product they
@@ -133,27 +134,6 @@ const jsonLd = {
 			}
 			.prose :global(tbody tr:nth-child(even) td:first-child) {
 				background: #f3f4f8;
-			}
-			/* Everything above is for 4-5 column comparison tables that have to
-			   scroll. Applied to a 2-3 column table it did the opposite: the
-			   block box shrank to content, the 9em cap folded the label column
-			   ("外部モニターのH / DMI") and up to half the screen sat empty
-			   beside it -- 11 of 59 tables on 2026-09-11. Tables that small
-			   never need to scroll, so give them the full width back. */
-			.prose :global(table:not(:has(tr > :nth-child(4)))) {
-				display: table;
-				mask-image: none;
-				-webkit-mask-image: none;
-			}
-			/* No longer a scroll container, so a keep-all run that cannot wrap
-			   would widen the whole page (break-word: 6 pages overflowed).
-			   anywhere prevents that but lets auto layout starve a short value
-			   column down to "0〜 / 1"; min-width keeps those intact. */
-			.prose :global(table:not(:has(tr > :nth-child(4))) :is(th, td)) {
-				max-width: none;
-				min-width: 4em;
-				position: static;
-				overflow-wrap: anywhere;
 			}
 			.title {
 				margin-bottom: 1em;
